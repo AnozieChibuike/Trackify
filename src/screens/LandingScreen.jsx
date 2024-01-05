@@ -64,7 +64,7 @@ const LandingScreen = ({ navigation }) => {
           color="white"
           bg={colors.grey}
           onclick={() => {
-            navigation.navigate("Login");
+            navigation.navigate("Login",);
           }}
           text="I have an account"
           marginV={25}

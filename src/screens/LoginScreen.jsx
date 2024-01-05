@@ -5,13 +5,31 @@ import Logos from "../components/Logos";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { height } from "../constant/scale";
+import { useEffect, useLayoutEffect, useState } from "react";
 
-export default LoginScreen =  ({navigation}) => {
+export default LoginScreen =  ({navigation, route}) => {
+    const [info, setInfo] = useState({
+      message: '',
+      type: ''
+    })
+    useLayoutEffect(()=>{
+    const {message, type} = route.params || {};
+      if (message && type ) {
+        setInfo({
+          message: message,
+          type: type
+        })
+      }
+    },[])
+
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <SafeAreaView style={[container]}>
             <Logos />
-            <View style={{ marginTop: height / 10, marginBottom: 10 }}>
+            {info.message && <Text style={{color: info.type,}}>{info.message}</Text>}
+            
+            <View style={{ marginTop: height / 12, marginBottom: 10 }}>
               <Input label="Login" />
             </View>
             <View style={{}}>
@@ -24,6 +42,10 @@ export default LoginScreen =  ({navigation}) => {
             </View>
             <Text style={{color:'white', textAlign: 'center', marginTop: height/5, marginBottom: 20}}>Don't have an account yet?</Text>
             <Button bg={colors.grey} color='white' text='Sign Up' onclick={() => {
+                setInfo({
+                  message: '',
+                  type: ''
+                })
                 navigation.navigate('SignUp')
             }} />
           </SafeAreaView>

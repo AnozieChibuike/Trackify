@@ -5,14 +5,18 @@ import container from "../constant/style";
 import Logos from "../components/Logos";
 import Input from "../components/Input";
 import colors from "../constant/colors";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import Button from "../components/Button";
-import { AsyncStorage } from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
 
 const base_url = 'https://flask-app-404911.uc.r.appspot.com'
 
 export default SignUpScreen = ({ navigation }) => {
+    useLayoutEffect(()=> {
+        setInputs({email: "", password: ''})
+        setStrength(0)
+    },[])
   const [strength, setStrength] = useState(0);
   const [inputs, setInputs] = useState({
     email: "",
@@ -45,14 +49,13 @@ export default SignUpScreen = ({ navigation }) => {
 async function register(){
     setLoading(true)
     try {
-        const response = await fetch(`${base_url}api/signup?email=${inputs.email}&password=${inputs.password}`)
+        const response = await fetch(`${base_url}/api/signup?email=${inputs.email}&password=${inputs.password}`)
         const data = await response.json()
         if (data.error) {
             Alert.alert('Error', data.error)
-            return}
+        } else {
         AsyncStorage.setItem('userData',JSON.stringify(data.data))
-       
-        navigation.navigate('Login')
+        navigation.navigate('Login',{message: 'Successfully Created your account, Login', type: 'green'})}
     } catch (error) {
         Alert.alert('Error',error.message)
     } finally {
@@ -131,6 +134,7 @@ return (
         color="white"
         bg={colors.accentPlum}
         onclick={() => {
+          setStrength(0)
             validate()
           }}
       />
@@ -149,6 +153,7 @@ return (
         bg={colors.grey}
         color="white"
         text="Sign In"
+        onclick={()=>{ navigation.navigate('Login')}}
         
       /></>)}
     </SafeAreaView>
