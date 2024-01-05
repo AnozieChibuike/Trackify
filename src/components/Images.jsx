@@ -4,5 +4,5 @@ export default Images = ({
     src,
     ...props
 }) => {
-    return <Image {...props} source={src} />
+    return <Image {...props} source={src}  />
 }
