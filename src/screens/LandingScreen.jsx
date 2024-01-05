@@ -6,16 +6,18 @@ import { height } from "../constant/scale"
 import Images from "../components/Images"
 import Logo from "../../assets/logo.png"
 import Trackizer from "../../assets/Trackizer.png"
+import { SafeAreaView } from "react-native-safe-area-context"
 
 export default LandingScreen = ()=> {
+    
     return (
-        <View style={[container,{paddingTop: 50}]}>
+        <SafeAreaView style={[container,{paddingTop: 50}]}>
             
             <View style={styles.topView}>
                 <Images src={Logo} />
                 <Images src={Trackizer} />
             </View>
-        </View>
+        </SafeAreaView>
     )
 }
 
