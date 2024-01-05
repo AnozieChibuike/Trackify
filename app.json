@@ -23,7 +23,7 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "proxy": "https://your-api-endpoint.com"
     }
   }
 }
