@@ -4,7 +4,8 @@ import { height, width } from "./scale";
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.dark,
-        padding: 25,
+        paddingHorizontal: 25,
+        paddingVertical: 15,
         height: height,
         width: width,
         display: "flex"

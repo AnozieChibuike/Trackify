@@ -13,15 +13,12 @@ import Youtube from "../../assets/youtube.png";
 import Onedrive from "../../assets/onedrive.png";
 import Spotify from "../../assets/Spotify.png";
 import Button from "../components/Button";
+import Logos from "../components/Logos";
 
-
-export default LandingScreen = ({navigation}) => {
+const LandingScreen = ({ navigation }) => {
   return (
-    <SafeAreaView style={[container, { paddingTop: 50, paddingHorizontal: 0 }]}>
-      <View style={styles.topView}>
-        <Images src={Logo} />
-        <Images style={{ marginLeft: 10 }} src={Trackizer} />
-      </View>
+    <SafeAreaView style={[container, { paddingHorizontal: 0 }]}>
+      <Logos />
       <View style={styles.midView}>
         <Images src={Bubble} style={{ position: "absolute" }} />
         <View style={{ flex: 1, display: "flex", marginVertical: 50 }}>
@@ -54,23 +51,30 @@ export default LandingScreen = ({navigation}) => {
         The only app you need to track your expenses and subscriptions
       </Text>
       <View style={styles.bottomView}>
-        <Button color='white' bg={colors.accentPlum} text='Get started' marginV={25} onclick={()=> {
-            Alert.alert('Hello',"You are adopted")
-        }}/>
-        <Button color='white' bg={colors.grey} text='I have an account' marginV={25} />
+        <Button
+          color="white"
+          bg={colors.accentPlum}
+          text="Get started"
+          marginV={25}
+          onclick={() => {
+            navigation.navigate("SignUp");
+          }}
+        />
+        <Button
+          color="white"
+          bg={colors.grey}
+          onclick={() => {
+            navigation.navigate("Login");
+          }}
+          text="I have an account"
+          marginV={25}
+        />
       </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  topView: {
-    display: "flex",
-    flexDirection: "row",
-    alignSelf: "center",
-    alignItems: "center",
-    marginBottom: height / 32,
-  },
   midView: {
     position: "relative",
     display: "flex",
@@ -79,3 +83,6 @@ const styles = StyleSheet.create({
   },
   bottomView: {},
 });
+
+
+export default LandingScreen
