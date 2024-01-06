@@ -14,8 +14,17 @@ import Onedrive from "../../assets/onedrive.png";
 import Spotify from "../../assets/Spotify.png";
 import Button from "../components/Button";
 import Logos from "../components/Logos";
+import { useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LandingScreen = ({ navigation }) => {
+
+  useEffect(()=>{
+    const userData = JSON.parse(AsyncStorage.getItem('userData'))
+    if (userData)
+      navigation.navigate('Dashboard')
+  },[])
+
   return (
     <SafeAreaView style={[container, { paddingHorizontal: 0 }]}>
       <Logos />

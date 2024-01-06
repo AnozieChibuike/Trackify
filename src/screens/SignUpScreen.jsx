@@ -7,7 +7,7 @@ import Input from "../components/Input";
 import colors from "../constant/colors";
  import { useLayoutEffect, useState } from "react";
 import Button from "../components/Button";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { Alert } from "react-native";
 
 const base_url = 'https://flask-app-404911.uc.r.appspot.com'
@@ -54,7 +54,7 @@ async function register(){
         if (data.error) {
             Alert.alert('Error', data.error)
         } else {
-        AsyncStorage.setItem('userData',JSON.stringify(data.data))
+        
         navigation.navigate('Login',{message: 'Successfully Created your account, Login', type: 'green'})}
     } catch (error) {
         Alert.alert('Error',error.message)
