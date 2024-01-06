@@ -18,12 +18,15 @@ import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LandingScreen = ({ navigation }) => {
-
   useEffect(()=>{
-    const userData = JSON.parse(AsyncStorage.getItem('userData'))
+    getUser()
+  },[])
+
+  const getUser = async () => {
+    let userData = await AsyncStorage.getItem('userData')
     if (userData)
       navigation.navigate('Dashboard')
-  },[])
+  }
 
   return (
     <SafeAreaView style={[container, { paddingHorizontal: 0 }]}>

@@ -10,7 +10,7 @@ import Button from "../components/Button";
 
 import { Alert } from "react-native";
 
-const base_url = 'https://flask-app-404911.uc.r.appspot.com'
+export const base_url = 'https://flask-app-404911.uc.r.appspot.com'
 
 export default SignUpScreen = ({ navigation }) => {
     useLayoutEffect(()=> {
